@@ -3,7 +3,7 @@
   <section id="end">
     <div>
       <h1>Game has ended</h1>
-      <p>{{ gameResult }}</p>
+      <h3>{{ gameResult }}</h3>
     </div>
   </section>
 </template>
@@ -12,18 +12,31 @@
     export default {
       data () {
         return {
+          lost: false
         }
       },
       computed: {
         gameResult () {
-          if (true) {
+          if (this.$store.getters.winner) {
             return "You didn't lose!"
           } else {
-            return "You lost"
+            return 'You lost'
           }
         }
       }
     }
 </script>
 
-<style rel="stylesheet/scss" type="text/css" lang="scss" scoped></style>
+<style rel="stylesheet/scss" type="text/css" lang="scss" scoped>
+  #end {
+    padding-top: 80px;
+    color: #fff;
+
+    h1 {
+      font-size: 3rem;
+    }
+    h3 {
+      font-size: 2.2rem;
+    }
+  }
+</style>

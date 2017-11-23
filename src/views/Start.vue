@@ -23,7 +23,10 @@
         console.log('POST: ' + config.baseUrl + '/create')
         axios.post(config.baseUrl + '/create')
           .then(r => {
-            console.log(r.data)
+            this.$store.commit('SET_PLAYER_ID', r.data.pid)
+            this.$store.commit('SET_GAME_ID', r.data.gid)
+            this.$store.commit('SET_GAME_OWNER')
+            this.$router.push({ name: 'Game' })
           })
           .catch(e => {
             console.log(e)
@@ -33,7 +36,9 @@
         if (this.intendedGame !== '') {
           axios.post(config.baseUrl + '/join/' + this.intendedGame)
             .then(r => {
-              console.log(r.data)
+              this.$store.commit('SET_PLAYER_ID', r.data.pid)
+              this.$store.commit('SET_GAME_ID', this.intendedGame)
+              this.$router.push({ name: 'Game' })
             })
             .catch(e => {
               console.log(e)
