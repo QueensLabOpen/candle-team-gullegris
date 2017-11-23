@@ -11,11 +11,16 @@ export default {
 </script>
 
 <style>
+  html {
+    background: #000;
+  }
 html, body {
   padding: 0;
   margin: 0;
   width: 100vw;
   height: 100vh;
+  position: relative;
+  overflow-y: hidden;
 }
 #app {
   height: 100%;

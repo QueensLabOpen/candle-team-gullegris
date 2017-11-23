@@ -5,10 +5,12 @@
       </div>
       <div v-else="" class="game">
         <div class="flame">
+          <div class="frame" :class="!onFire ? 'targeted' : ''">
 
+          </div>
         </div>
         <div class="candle">
-
+          <img @click="lightCandle" src="../assets/ljus.png" alt="">
         </div>
       </div>
     </section>
@@ -19,7 +21,8 @@
     export default {
       data () {
         return {
-          loading: false
+          loading: false,
+          chosenVictim: 'a'
         }
       },
       methods: {
@@ -28,10 +31,25 @@
           evtSource.onmessage = function (e) {
             console.log(e.data)
           }
+        },
+        lightCandle () {
+          console.log('ITS LIT')
+        }
+      },
+      computed: {
+        onFire () {
+          if (this.chosenVictim !== this.playerId) {
+            return true
+          } else {
+            return false
+          }
+        },
+        playerId () {
+          return this.$store.getters.playerId
         }
       },
       mounted () {
-        this.getStream()
+        // this.getStream()
       }
     }
 </script>
@@ -40,10 +58,44 @@
   #game {
     width: 100%;
     height: 100%;
+    position: relative;
 
     .loading {
       height: 100%;
       width: 100%;
+    }
+
+    .game {
+      width: 100%;
+      height: 100%;
+      padding-top: 80px;
+
+      .flame {
+
+        .frame {
+          background-image: url('../assets/flame/Flame-rak-liten.svg');
+          background-position: center;
+          background-repeat: no-repeat;
+          width: 70px;
+          height: 140px;
+          margin: 0 auto;
+          margin-bottom: -30px;
+
+          &.targeted {
+            background: none;
+          }
+        }
+      }
+
+      .candle {
+
+        img {
+          display: block;
+          margin: 0 auto;
+          width: 150px;
+          padding: 0;
+        }
+      }
     }
   }
 </style>

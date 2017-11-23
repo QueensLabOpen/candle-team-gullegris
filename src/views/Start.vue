@@ -46,11 +46,12 @@
 
 <style scoped lang="scss">
   #start {
+    padding-top: 80px;
     width: 100%;
     height: 100%;
     h1 {
       font-size: 3rem;
-      color: #2c3e50;
+      color: #fff;
     }
 
     a {
@@ -59,11 +60,12 @@
       background: #008cff;
       padding: 1em;
       color: #fff;
-      margin: 0 auto;
+      margin: 0 auto 2em;
     }
 
     input {
       padding: 1em;
+      width: 200px;
       margin: 1em auto;
     }
   }
