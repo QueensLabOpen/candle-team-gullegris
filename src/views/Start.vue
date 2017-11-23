@@ -10,6 +10,8 @@
 </template>
 
 <script>
+  import axios from 'axios'
+  import {config} from '../config'
   export default {
     data () {
       return {
@@ -18,10 +20,25 @@
     },
     methods: {
       createNewGame () {
-        console.log('CLICKED: Create new game')
+        console.log('POST: ' + config.baseUrl + '/create')
+        axios.post(config.baseUrl + '/create')
+          .then(r => {
+            console.log(r.data)
+          })
+          .catch(e => {
+            console.log(e)
+          })
       },
       joinGame () {
-        console.log('CLICKED: Join game')
+        if (this.intendedGame !== '') {
+          axios.post(config.baseUrl + '/join/' + this.intendedGame)
+            .then(r => {
+              console.log(r.data)
+            })
+            .catch(e => {
+              console.log(e)
+            })
+        }
       }
     }
   }
@@ -29,8 +46,8 @@
 
 <style scoped lang="scss">
   #start {
-    width: 100vw;
-    height: 100vh;
+    width: 100%;
+    height: 100%;
     h1 {
       font-size: 3rem;
       color: #2c3e50;
